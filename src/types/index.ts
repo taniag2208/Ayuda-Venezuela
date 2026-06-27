@@ -112,6 +112,126 @@ export interface ChatMessage {
   timestamp: Date;
 }
 
+// ─── FAMILY REUNIFICATION ────────────────────────────────────────────────────
+
+export type FamilyReportStatus =
+  | "searching"
+  | "possible_match"
+  | "verified"
+  | "reunited"
+  | "closed"
+  | "archived";
+
+export type SexType = "male" | "female" | "other" | "unknown";
+export type HealthStatus = "good" | "injured" | "critical" | "unknown";
+export type LocationType = "hospital" | "shelter" | "care_center" | "home" | "other";
+export type MatchStatus = "suggested" | "pending_consent" | "accepted" | "rejected" | "reunited";
+
+export interface MissingPersonReport {
+  id: string;
+  full_name: string;
+  alias?: string;
+  age_approx: number;
+  sex: SexType;
+  photo_url?: string;
+  languages: string[];
+  country: string;
+  state: string;
+  city: string;
+  address_approx?: string;
+  lat?: number;
+  lng?: number;
+  last_seen_at: string;
+  last_seen_place: string;
+  height_cm?: number;
+  hair_color?: string;
+  eye_color?: string;
+  clothing_description?: string;
+  distinguishing_marks?: string;
+  tattoos?: string;
+  scars?: string;
+  // Medical info — never exposed publicly
+  allergies?: string;
+  disability?: string;
+  medications?: string;
+  medical_conditions?: string;
+  // Reporter info — revealed only after mutual consent
+  reporter_name: string;
+  reporter_relationship: string;
+  reporter_email: string;
+  reporter_phone?: string;
+  reporter_whatsapp?: string;
+  status: FamilyReportStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SurvivorReport {
+  id: string;
+  full_name: string;
+  age_approx?: number;
+  photo_url?: string;
+  current_location: string;
+  location_type: LocationType;
+  location_name?: string;
+  lat?: number;
+  lng?: number;
+  health_status: HealthStatus;
+  needs_help: boolean;
+  message_for_family?: string;
+  consent_to_be_found: boolean;
+  show_email: boolean;
+  show_phone: boolean;
+  show_whatsapp: boolean;
+  // Contact — only shared after consent
+  email?: string;
+  phone?: string;
+  whatsapp?: string;
+  status: FamilyReportStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FamilyMatch {
+  id: string;
+  missing_report_id: string;
+  survivor_report_id: string;
+  score: number;
+  match_reasons: string[];
+  status: MatchStatus;
+  missing_side_consent: boolean;
+  survivor_side_consent: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FamilyStats {
+  total_missing: number;
+  total_survivors: number;
+  total_matches: number;
+  verified_matches: number;
+  reunited_count: number;
+  active_searches: number;
+}
+
+export type MissingPersonPublic = Omit<
+  MissingPersonReport,
+  | "allergies"
+  | "disability"
+  | "medications"
+  | "medical_conditions"
+  | "reporter_email"
+  | "reporter_phone"
+  | "reporter_whatsapp"
+  | "lat"
+  | "lng"
+  | "address_approx"
+>;
+
+export type SurvivorPublic = Omit<SurvivorReport, "email" | "phone" | "whatsapp" | "lat" | "lng">;
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 export interface DisasterConfig {
   id: string;
   name: string;

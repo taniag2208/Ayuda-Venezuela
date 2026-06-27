@@ -9,6 +9,7 @@ import {
   Phone,
   Shield,
   Zap,
+  Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,6 +83,17 @@ const actions = [
     iconColor: "text-teal-600 dark:text-teal-400",
     borderColor: "border-teal-200 dark:border-teal-800",
     cta: "Ver mapa",
+    ctaVariant: "outline" as const,
+  },
+  {
+    href: "/familia",
+    icon: Search,
+    title: "Reunificación Familiar",
+    description: "Busca a un familiar desaparecido o informa que estás a salvo. IA con protección total de datos.",
+    color: "bg-indigo-50 dark:bg-indigo-950",
+    iconColor: "text-indigo-600 dark:text-indigo-400",
+    borderColor: "border-indigo-200 dark:border-indigo-800",
+    cta: "Buscar familiar",
     ctaVariant: "outline" as const,
   },
 ];
