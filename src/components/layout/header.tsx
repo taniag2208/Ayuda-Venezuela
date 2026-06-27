@@ -12,6 +12,7 @@ import {
   MessageCircle,
   LayoutDashboard,
   Phone,
+  Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ const navItems = [
   { href: "/mapa", label: "Mapa", icon: MapPin },
   { href: "/solicitudes", label: "Necesito Ayuda", icon: AlertTriangle },
   { href: "/ofertas", label: "Quiero Ayudar", icon: Heart },
+  { href: "/familia", label: "Buscar Familiar", icon: Search },
   { href: "/voluntarios", label: "Voluntarios", icon: Users },
   { href: "/centros", label: "Centros", icon: MapPin },
   { href: "/chat", label: "Asistente IA", icon: MessageCircle },
